@@ -19,7 +19,8 @@
   transition: all .3s;
 }
 .images > img.current {
-  transform: translateX(0) left: 0;
+  transform: translateX(0);
+   left: 0;
   z-index:1;
 }
 .images > img.leave {
