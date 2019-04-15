@@ -1,32 +1,23 @@
-let allButtons = $('#buttons>span')
-for(let i=0;i<allButtons.length;i++){
-  $(allButtons[i]).on('click',function(x){
-    let index = $(x.currentTarget).index()
-    let p =index*(-250)
-    $('#images').css({
-      transform:'translateX('+p+'px)'
+$('.images>img:nth-child(1)').addClass('current')
+$('.images>img:nth-child(2)').addClass('enter')
+$('.images>img:nth-child(3)').addClass('enter')
+
+let n = 1
+setInterval(() => {
+  $(`.images>img:nth-child(${x(n)})`).removeClass('current').addClass('leave')
+    .one('transitionend', (e) => {
+      $(e.currentTarget).removeClass('leave').addClass('enter')
     })
-    n = index
-    allButtons.eq(n).addClass('red')
-    .siblings('.red').removeClass('red')
-  })
-}
-let n = 0
-let size = $('#images>img').length
-activeButton(n%size)
-let id = timer()
-$('.window').on('mouseenter',function(){
-  window.clearInterval(id)
-})
-$('.window').on('mouseleave',function(){
-  let id = timer()
-})
-function activeButton(index){
-  allButtons.eq(index).trigger('click')
-}
-function timer(){
-  return setInterval(()=>{
-    n += 1
-    activeButton(n%size)
-},1000)
+  $(`.images>img:nth-child(${x(n+1)})`).removeClass('enter').addClass('current')
+  n += 1
+}, 1000)
+
+function x(n) {
+  if (n > 3) {
+    n = n % 3
+    if (n === 0) {
+      n = 3
+    }
+  }
+  return n
 }

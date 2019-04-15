@@ -1,24 +1,31 @@
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
 }
-.window{
-  width:250px;
+.window {
+  width: 250px;
   height: 375px;
+  transition: 0.3s;
   overflow: hidden;
-  transition:0.3s;
 }
-.images{
+.images {
   display: flex;
-  align-items: flex-start; transition:all .3s;
+  align-items: flex-start;
+  position: relative;
 }
-button{
-  margin-top:8px;
-  border: none;
-  width:60px;
-  height:30px;
-  margin-left: 8px
+.images > img {
+  position: absolute;
+  top: 0;
+  transition: all .3s;
 }
-.red{
-  color:red;
+.images > img.current {
+  transform: translateX(0) left: 0;
+  z-index:1;
+}
+.images > img.leave {
+  transform: translateX(-100%);
+    z-index:1;
+}
+.images > img.enter {
+  transform: translateX(100%);
 }
