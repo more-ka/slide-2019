@@ -1,5 +1,4 @@
 let allButtons = $('#buttons>span')
-
 for(let i=0;i<allButtons.length;i++){
   $(allButtons[i]).on('click',function(x){
     let index = $(x.currentTarget).index()
@@ -12,22 +11,22 @@ for(let i=0;i<allButtons.length;i++){
     .siblings('.red').removeClass('red')
   })
 }
-
 let n = 0
-let size = $('images>img').length
-allButtons.eq(size%3).trigger('click')
-let id = setInterval(()=>{
-    size += 1
-    allButtons.eq(size%3).trigger('click').addClass('red')
-    .siblings('.red').removeClass('red')
-},1000)
-
+let size = $('#images>img').length
+activeButton(n%size)
+let id = timer()
 $('.window').on('mouseenter',function(){
   window.clearInterval(id)
 })
 $('.window').on('mouseleave',function(){
-  let id = setInterval(()=>{
-    size += 1
-    allButtons.eq(size%3).trigger('click')
-},1000)
+  let id = timer()
 })
+function activeButton(index){
+  allButtons.eq(index).trigger('click')
+}
+function timer(){
+  return setInterval(()=>{
+    n += 1
+    activeButton(n%size)
+},1000)
+}
