@@ -1,54 +1,42 @@
-let n
-init()
-let timer = setInterval(() => {
-  makeLeave(getImage(n))
-    .one('transitionend', (e) => {
-      makeEnter($(e.currentTarget))
-    })
-    makeCurrent(getImage(n+1))
-  n += 1
-}, 2000)
+let $buttons = $('#buttons > span')
+let $slides = $('#slides')
+let $images = $slides.children('img')
+let $firstcopy = $images.eq(0).clone(true)
+let $lastcopy = $images.eq(2).clone(true)
 
-document.addEventListener('visibilitychange', function() {
-  if(document.hidden){
-    window.clearInterval(timer)
-    console.log('clear')
+$slides.append($firstcopy)
+$slides.prepend($lastcopy)
+let current = 5
+$slides.css({transform:'translateX(-250px)'})
+$buttons.eq(0).on('click',function(){
+  if(current === 2){
+    $slides.css({transform:'translateX(-1000px)'})
+    .one('transitionend',function(){
+      $slides.hide()
+      $slides.css({transform:'translateX(-250px)'})
+      .offset()
+      $slides.show()
+    })
   }else{
-    console.log('timer')
-    timer = setInterval(() => {
-      makeLeave(getImage(n))
-        .one('transitionend', (e) => {
-          makeEnter($(e.currentTarget))
-        })
-        makeCurrent(getImage(n+1))
-      n += 1
-    }, 2000)
+    $slides.css({transform:'translateX(-250px)'})
+    current = 0
   }
 })
-
-function x(n) {
-  if (n > 3) {
-    n = n % 3
-    if (n === 0) {
-      n = 3
-    }
+$buttons.eq(1).on('click',function(){
+  $slides.css({transform:'translateX(-500px)'})
+  current = 1
+})
+$buttons.eq(2).on('click',function(){
+  if(current === 0){
+    $slides.css({transform:'translateX(0px)'})
+    .one('transitionend',function(){
+      $slides.hide()
+      $slides.css({transform:'translateX(-750px)'})
+    .offset()
+    $slides.show()
+    })
+  }else{
+    $slides.css({transform:'translateX(-750px)'})
+    current = 2
   }
-  return n
-}
-function getImage(n){
-  return $(`.images>img:nth-child(${x(n)})`)
-}
-function init(){
-  n = 1
-  $(`.images>img:nth-child(${n})`).addClass('current')
-  .siblings().addClass('enter')
-}
-function makeCurrent($node){
-  return $node.removeClass('enter leave').addClass('current')
-}
-function makeLeave($node){
-  return $node.removeClass('enter current').addClass('leave')
-}
-function makeEnter($node){
-  return $node.removeClass('current leave').addClass('enter')
-}
+})
