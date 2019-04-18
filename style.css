@@ -15,6 +15,9 @@ body{text-align: center;}
   position: relative;
   transition:all 0.3s;
 }
+.slides.hide{
+  display: none;
+}
 .slides > img {
   top: 0;
 }
