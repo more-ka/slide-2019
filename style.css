@@ -3,6 +3,7 @@
   padding: 0;
 }
 body{text-align: center;}
+.wrapper{display: inline-block;}
 .window {
   width: 250px;
   height: 375px;
@@ -26,6 +27,8 @@ span{
   cursor: pointer;
   border-radius:2px;
   background: lightgray;
+  display: inline-block;
+  margin-bottom: 16px;
 }
 span:nth-child(2){
   margin:0 20px;

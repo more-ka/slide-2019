@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -8,19 +9,27 @@
   <link rel="stylesheet" href="./style.css">
   <title>无缝自动轮播</title>
 </head>
+
 <body>
-  <div class="window">
-    <div class="slides" id="slides">
-      <img width="250" height="375" src="./1.jpg" alt="">
-      <img width="250" height="375" src="./2.jpg" alt="">
-      <img width="250" height="375" src="./3.jpg" alt="">
-    </div>
-  </div>
-  <div id="buttons" class="buttons">
-    <span>1</span>
-    <span>2</span>
-    <span>3</span>
+  <div id="wrapper" class="wrapper">
+      <div class="window">
+          <div class="slides" id="slides">
+            <img width="250" height="375" src="./1.jpg" alt="">
+            <img width="250" height="375" src="./2.jpg" alt="">
+            <img width="250" height="375" src="./3.jpg" alt="">
+          </div>
+        </div>
+        <div class="control">
+          <span id="previous">上一张</span>
+          <span id="next">下一张</span>
+        </div>
+        <div id="buttons" class="buttons">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+        </div>
   </div>
 </body>
 <script src="./main.js"></script>
+
 </html>
